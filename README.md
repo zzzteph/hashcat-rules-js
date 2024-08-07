@@ -43,13 +43,13 @@ The function returns a string with the applied rules.
 
 ### Example
 
-```
+```javascript
 const hashcatRule = require('hashcat-rules-js');
 const result= hashcatRule.applyRule("hashcat","$1")
 console.log(result);//hashcat1
 ```
 
-### Supported rules and output
+### Rules and output
 
 |Name|Function|Description|Example Rule|Input Word|Output Word|
 | --- | --- | --- | --- | --- | --- |
