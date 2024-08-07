@@ -1,3 +1,12 @@
+function convertN(chr) {
+
+    if (chr >= '0' && chr <= '9') {
+        return Number(chr);
+    }
+    return Number(chr.toUpperCase().charCodeAt(0) - 55);
+
+}
+
 
 function Nothing(string) {
     return string;
