@@ -29,12 +29,14 @@ const result= hashcatRule.applyRule(password,rule)
 
 ### Parameters
 
+The **applyRule** function takes the following options:
+
  - **password** (required): The password to which the rules will be applied.
  - **rule** (required): Rules compatible with the Hashcat rules engine.
  
  
 ### Return Value
-The function returns a string with the applied rules.
+The **applyRule** function returns a string with the applied rules.
 
 - if rule is an empty string, **false** will be returned
 - if rule starts with **#** (hash), **false** will be returned
