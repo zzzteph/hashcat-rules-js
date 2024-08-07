@@ -1,0 +1,36 @@
+{
+  "name": "hashcat-rules-js",
+  "version": "1.0.6",
+  "description": "An implementation of the hashcat rules engine in javascript",
+  "main": "dist/hashcat-rules.js",
+  "scripts": {
+    "test": "node test.js",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzzteph/hashcat-rules-js.git"
+  },
+  "keywords": [
+    "hashcat",
+    "bruteforce",
+    "rules",
+    "passwords",
+    "password",
+    "security",
+    "cracking",
+    "hashcracking"
+  ],
+  "author": "zzzteph",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zzzteph/hashcat-rules-js/issues"
+  },
+  "homepage": "https://github.com/zzzteph/hashcat-rules-js#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.24.8",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3",
+    "vite": "^5.3.5"
+  }
+}
