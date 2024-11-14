@@ -89,7 +89,7 @@ function PrependCharacter(string, chr) {
 
 function TruncateLeft(string) {
     return string.slice(1);
-}
+} 
 
 function TruncateRight(string) {
     return string.slice(0, string.length - 1);
@@ -127,6 +127,7 @@ function OverwriteN(string, n, chr) {
 }
 
 function TruncateN(string, n) {
+    n = convertN(n);
     return string.slice(0, n);
 }
 
@@ -141,10 +142,12 @@ function Purge(string, chr) {
 }
 
 function DuplicateFirstN(string, n) {
+    n = convertN(n);
     return DuplicateN(string.charAt(0), n) + string;
 }
 
 function DuplicateLastN(string, n) {
+    n = convertN(n);
     if (string.length === 0) return string;
     return string + DuplicateN(string.charAt(string.length - 1), n);
 }
