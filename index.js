@@ -29,13 +29,11 @@ function InvertCapitalize(string) {
 }
 
 function TogglePosition(string, pos) {
-
-    if (isNaN(parseInt(pos)))
-        pos = convertN(pos);
+    pos = convertN(pos);
     if (string.charAt(pos) === string.charAt(pos).toUpperCase()) {
         return string.slice(0, pos) + string.charAt(pos).toLowerCase() + string.slice(pos + 1);
     }
-    if (string.charAt(pos) === string.charAt(pos).toLowerCase()) {
+    else if (string.charAt(pos) === string.charAt(pos).toLowerCase()) {
         return string.slice(0, pos) + string.charAt(pos).toUpperCase() + string.slice(pos + 1);
     }
 }
