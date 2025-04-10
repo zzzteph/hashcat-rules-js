@@ -1,5 +1,8 @@
 function convertN(chr) {
-
+    if (typeof chr === 'number')
+    {
+        return chr;
+    }
     if (chr >= '0' && chr <= '9') {
         return Number(chr);
     }
