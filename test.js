@@ -244,3 +244,8 @@ console.log(hashcat.applyRule("qazwsxedcrfvtgbyhnujmikolp","TCTE"));
 console.log(hashcat.applyRule("qazwsxedcrfvtgbyhnujmikolp","TD"));
 console.log(hashcat.applyRule("qazwsxedcrfvtgbyhnujmikolp","TDTE"));
 console.log(hashcat.applyRule("qazwsxedcrfvtgbyhnujmikolp","TE"));
+console.log(hashcat.applyRule("qazwsxedcrfvtgbyhnujmikolp",",2 sC+ t"));
+console.log(hashcat.applyRule("password","x04"));
+console.log(hashcat.applyRule("password","x14"));
+console.log(hashcat.applyRule("password","x24"));
+console.log(hashcat.applyRule("password","x34"));

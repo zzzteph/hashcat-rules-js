@@ -107,7 +107,7 @@ function DeleteN(string, n) {
 function ExtractRange(string, start, end) {
     start = convertN(start);
     end = convertN(end);
-    return string.slice(start, end);
+    return string.slice(start, start+end);
 }
 
 function OmitRange(string, start, end) {
@@ -134,6 +134,7 @@ function TruncateN(string, n) {
 
 
 function Replace(string, find, replace) {
+    console.log(string);
     return string.replaceAll(find, replace);
 }
 
