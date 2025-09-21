@@ -1,5 +1,8 @@
 
 const hashcat = require('./dist/hashcat-rules.js');
+const fs = require("fs");
+const { execSync } = require("child_process");
+/*
 console.log(hashcat.applyRule("goosebumps","$2$0$2$5T0T5"));
 console.log(hashcat.applyRule("hashcat","$2$0$2$5"));
 console.log(hashcat.applyRule("GooseBumps1","t"));
@@ -249,3 +252,64 @@ console.log(hashcat.applyRule("password","x04"));
 console.log(hashcat.applyRule("password","x14"));
 console.log(hashcat.applyRule("password","x24"));
 console.log(hashcat.applyRule("password","x34"));
+
+console.log(hashcat.applyRule("password","k"));
+console.log(hashcat.applyRule("password","K"));
+
+console.log(hashcat.applyRule("p","K"));
+console.log(hashcat.applyRule("p ","k"));
+console.log(hashcat.applyRule("p@ssW0rd","*34"));
+console.log(hashcat.applyRule("p@ssW0rd","L2"));
+console.log(hashcat.applyRule("p@ssW0rd","R2"));
+console.log(hashcat.applyRule("p@ssW0rd","+2"));
+console.log(hashcat.applyRule("p@ssW0rd","-1"));
+*/
+
+
+if(hashcat.applyRule("password","$$ .7")=="passwor$$")console.log("PASSED1");
+if(hashcat.applyRule("password","$) $7 O4A")=="password)7")console.log("PASSED2");
+if(hashcat.applyRule("password","$$ c .3")=="Paswword$")console.log("PASSED3");
+if(hashcat.applyRule("password","$$ i8C O2A")=="passwordC$")console.log("PASSED4");
+if(hashcat.applyRule("password","$$ iA1")=="password$")console.log("PASSED5");
+if(hashcat.applyRule("password","$$ Z1")=="password$$")console.log("PASSED6");
+if(hashcat.applyRule("password","p2")=="passwordpasswordpassword")console.log("PASSED7");
+
+
+
+const rulesFile = "fuzz.rule";
+
+const lines = fs.readFileSync(rulesFile, "utf-8").split("\n");
+
+for (const line of lines) {
+  if (!line.trim()) continue; 
+  console.log(line);
+  fs.writeFileSync("/tmp/test.rule", line + "\n");
+  fs.writeFileSync("/tmp/password.txt", "password");
+  // команда hashcat
+
+
+  try {
+    let output = execSync('hashcat -r /tmp/test.rule --stdout /tmp/password.txt', { encoding: "utf-8" });
+if (output.endsWith("\n")) {
+  output = output.slice(0, -1);
+}
+
+
+    if(hashcat.applyRule("password",line)==output)
+    {
+        console.log("Passed");
+    }
+    else
+    {
+    fs.appendFileSync("./error.log", "=======================\n");
+    fs.appendFileSync("./error.log", "Rule:"+line+"\n");
+    fs.appendFileSync("./error.log", "Hashcat:"+output+"\n");
+    fs.appendFileSync("./error.log", "Engine:"+hashcat.applyRule("password",line)+"\n");
+    fs.appendFileSync("./error.log", "=======================\n");
+
+      
+    }
+  } catch (err) {
+
+  }
+}
