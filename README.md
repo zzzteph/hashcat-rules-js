@@ -83,6 +83,16 @@ console.log(result);//hashcat1
 |Duplicate first N|zN	|Duplicate first character N times		|z2|p@ssW0rd	|ppp@ssW0rd	|
 |Duplicate last N|ZN|Duplicate last character N times	|Z2|p@ssW0rd	|p@ssW0rddd	|
 |Duplicate all|q|Duplicate every character	|q|p@ssW0rd	|pp@@ssssWW00rrdd	|
-
-
-
+|Swap front|k|	Swap first two characters|k|p@ssW0rd	|@pssW0rd	|
+|Swap back|K|	Swap last two characters	|K|p@ssW0rd	|p@ssW0dr	|
+|Swap @ N|*NM|	Swap character at position N with character at position M|*34|p@ssW0rd	|p@sWs0rd	|
+|Bitwise shift left|LN|Bitwise shift left character @ N	|L2|p@ssW0rd	|p@æsW0rd	|
+|Bitwise shift right|RN|Bitwise shift right character @ N	|	R2|p@ssW0rd	|p@9sW0rd	|
+|ASCII increment|+N|	Increment character @ N by 1 ascii value|+2|p@ssW0rd	|p@tsW0rd	|
+|ASCII decrement|-N|Decrement character @ N by 1 ascii value	|-1|p@ssW0rd	|p?ssW0rd	|
+|Replace N + 1|.N|	Replace character @ N with value at @ N plus 1	|.1|p@ssW0rd	|psssW0rd	|
+|Replace N - 1|,N|	Replace character @ N with value at @ N minus 1	|,1|p@ssW0rd	|ppssW0rd	|
+|Duplicate block front|yN|	Duplicate first N characters	|y2|p@ssW0rd	|	p@p@ssW0rd	|
+|Duplicate block back|YN|	Duplicate last N characters	|Y2|p@ssW0rd	|	p@ssW0rdrd	|
+|Title|E|Lower case the whole line, then upper case the first letter and every letter after a space	|E|p@ssW0rd	|P@ssw0rd W0rld	|
+|Title w/separator|e|Lower case the whole line, then upper case the first letter and every letter after a custom separator character	|e-|p@ssW0rd	|P@ssw0rd-W0rld	|
