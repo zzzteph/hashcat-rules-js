@@ -42,10 +42,15 @@ function TogglePosition(string, pos) {
 }
 
 function ToggleCase(string) {
-    for (var i = 0; i < string.length; i++) {
-        string = TogglePosition(string, i);
+    let result = '';
+    for (let ch of string) {
+        if (ch === ch.toLowerCase()) {
+            result += ch.toUpperCase();
+        } else {
+            result += ch.toLowerCase();
+        }
     }
-    return string;
+    return result;
 }
 
 
@@ -132,7 +137,10 @@ function OmitRange(string, start, end) {
 
 function InsertN(string, n, chr) {
     n = convertN(n);
-    if(n>=string.length)return string;
+    if(n>string.length)
+    {
+        return string;
+    }
     return string.slice(0, n) + chr + string.slice(n);
 }
 

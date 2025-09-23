@@ -1,7 +1,8 @@
 
 const hashcat = require('./dist/hashcat-rules.js');
-const fs = require("fs");
 const { execSync } = require("child_process");
+const readline = require("readline");
+const fs = require("fs");
 /*
 console.log(hashcat.applyRule("goosebumps","$2$0$2$5T0T5"));
 console.log(hashcat.applyRule("hashcat","$2$0$2$5"));
@@ -275,41 +276,44 @@ if(hashcat.applyRule("password","$$ Z1")=="password$$")console.log("PASSED6");
 if(hashcat.applyRule("password","p2")=="passwordpasswordpassword")console.log("PASSED7");
 
 
-
 const rulesFile = "fuzz.rule";
 
-const lines = fs.readFileSync(rulesFile, "utf-8").split("\n");
-
-for (const line of lines) {
-  if (!line.trim()) continue; 
-  console.log(line);
-  fs.writeFileSync("/tmp/test.rule", line + "\n");
-  fs.writeFileSync("/tmp/password.txt", "password");
-  // команда hashcat
 
 
-  try {
-    let output = execSync('hashcat -r /tmp/test.rule --stdout /tmp/password.txt', { encoding: "utf-8" });
-if (output.endsWith("\n")) {
-  output = output.slice(0, -1);
-}
+function compareRules(rulesFile, passwordsFile) {
 
+  const rulesText = fs.readFileSync(rulesFile, "utf8");
+  const passwordsText = fs.readFileSync(passwordsFile, "utf8");
+  let wrong=0;
+  const toLines = (t) =>
+    t.replace(/\r/g, "").split("\n"); 
 
-    if(hashcat.applyRule("password",line)==output)
+  const rules = toLines(rulesText);
+  const expected = toLines(passwordsText);
+  console.log(rules.length);
+  console.log(expected.length);
+
+  const results = [];
+
+  for (let i = 0; i < rules.length; i++) {
+
+  if (rules[i].includes("L")) {
+    continue;
+  }
+
+    if(expected[i]!==hashcat.applyRule("password", rules[i]))
     {
-        console.log("Passed");
-    }
-    else
-    {
-    fs.appendFileSync("./error.log", "=======================\n");
-    fs.appendFileSync("./error.log", "Rule:"+line+"\n");
-    fs.appendFileSync("./error.log", "Hashcat:"+output+"\n");
-    fs.appendFileSync("./error.log", "Engine:"+hashcat.applyRule("password",line)+"\n");
-    fs.appendFileSync("./error.log", "=======================\n");
+            console.log(rules[i]);
+      console.log(expected[i]);
+      console.log(hashcat.applyRule("password", rules[i]));
+      wrong++;
 
-      
     }
-  } catch (err) {
 
   }
+console.log(wrong);
+  return results;
 }
+
+
+compareRules("fuzz.rule", "password.txt");
